@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <div>
+        {{name}}
+        <c-button></c-button>
+    </div>
+</div>
+
+<script src="./node_modules/vue/dist/vue.min.js"></script>
+<script src="button.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+                name:'张三'
+            }
+        },
+    })
+</script>
+</body>
+</html>
+
