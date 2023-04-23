@@ -1,5 +1,10 @@
 <template>
-  <button class="c-button">hi hi</button>
+    <button class="c-button">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#i-shezhi-xianxing"></use>
+        </svg>
+        <slot></slot>
+    </button>
 </template>
 
 <script>
