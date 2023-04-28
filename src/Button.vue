@@ -1,6 +1,6 @@
 <template>
     <button class="c-button" :class="iconPosition?iconPosition:''">
-        <Icon :iconName="name"></Icon>
+        <Icon :iconName="name" :class="loading?'loading':''"></Icon>
         <slot></slot>
     </button>
 </template>
@@ -10,6 +10,7 @@ export default {
   name: "c-button",
   props:{
     name:'',
+    loading:false,
     iconPosition:{
       type:String,
       default:'left',
@@ -41,6 +42,17 @@ export default {
   }
   &:active{
     background: var(--button-active-color);
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loading{
+    animation: spin 1s infinite linear ;
   }
 }
 .right>.icon{
