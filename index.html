@@ -26,15 +26,30 @@
 <body>
 
 <div id="app">
+    <c-input value="1awfa啊我发"></c-input>
+    <c-input readonly value="22awfa啊我发"></c-input>
+    <c-input disabled value="3333awd"></c-input>
+    <c-input v-model="text1"></c-input>
+    <button @click="text1+=1">加加加</button>
+    父组件：{{ text1 }}
+    <div style="margin: 20px"></div>
     <c-button name="i-set">666</c-button>
     <c-button name="i-set" icon-position="right">666</c-button>
     <c-button name="i-loading" :loading="true">666</c-button>
     <icon icon-name="i-good"></icon>
+    <c-button-group>
+        <c-button icon="i-arrow-left">上一页</c-button>
+        <c-button>更多</c-button>
+        <c-button icon="i-arrow-right" icon-position="right">上一页</c-button>
+        <div></div>
+        <div></div>
+    </c-button-group>
 </div>
 
 <script src="./node_modules/vue/dist/vue.min.js"></script>
 <script src="src/app.js"></script>
 <script src="//at.alicdn.com/t/c/font_4020554_a5697fz9rzs.js"></script>
+
 </body>
 </html>
 
