@@ -40,8 +40,13 @@ export default {
         }
     },
     mounted() {
-        const matched = this.$slots.default.find(item => item.tag === "vue-component-1-c-select-option" && item.elm.__vue__.value === this.defaultValue)
-        matched ? this.selectLabel = matched.elm.innerText : ''
+      //默认值去匹配子选项，显示文本
+      const matched = this.$slots.default.find(item => item.tag === "vue-component-1-c-select-option" && item.elm.__vue__.value === this.defaultValue)
+      matched ? this.selectLabel = matched.elm.innerText : ''
+
+
+      //检查select组件种只能放c-button-group组件
+      console.log(this.$el,this.$slots,777)
     }
 }
 

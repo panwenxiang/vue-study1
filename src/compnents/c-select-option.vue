@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .c-select-option {
     color: #aaa;
     font-size: 14px;
