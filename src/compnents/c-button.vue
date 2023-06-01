@@ -1,6 +1,6 @@
 <template>
     <button class="c-button" :class="iconPosition?iconPosition:''">
-        <Icon :iconName="name" :class="loading?'loading':''"></Icon>
+        <c-icon :iconName="name" :class="loading?'loading':''"></c-icon>
         <slot></slot>
     </button>
 </template>
@@ -15,7 +15,6 @@ export default {
             type: String,
             default: 'left',
             validator(value) {
-                console.log(value === 'left' || value === 'right')
                 return value === 'left' || value === 'right'
             }
         }

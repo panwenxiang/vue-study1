@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: "c-input",
+    name: 'c-input',
     props: {
         value: '',
         disabled: {
@@ -25,7 +25,6 @@ export default {
     },
     methods: {
         input(e) {
-            console.log(661, e, e.target.value)
             this.$emit('input', e.target.value)
         }
     }
@@ -44,6 +43,7 @@ export default {
     border-radius: 4px;
     border: 1px solid #999;
     display: inline-block;
+    transition: all 0.3s;
 
     &:hover {
       border-color: #666;

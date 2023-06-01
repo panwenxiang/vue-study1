@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        :root{
-            --button-height:32px;
-            --font-size:14px;
-            --button-bg:white;
-            --button-active-bg:32px;
-            --button-border-radius:4px;
-            --button-color:#333;
-            --button-border-color:#999;
-            --button-border-color-hover:#666;
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --button-height: 32px;
+            --font-size: 14px;
+            --button-bg: white;
+            --button-active-bg: 32px;
+            --button-border-radius: 4px;
+            --button-color: #333;
+            --button-border-color: #999;
+            --button-border-color-hover: #666;
             --button-active-color: #eee;
         }
-        body{
+        body {
             font-size: var(--font-size);
+            background: #bbb;
         }
         #app{
             margin: 20px;
@@ -30,13 +35,13 @@
     <c-input readonly value="22awfa啊我发"></c-input>
     <c-input disabled value="3333awd"></c-input>
     <c-input v-model="text1"></c-input>
-    <button @click="text1+=1">加加加</button>
+    <c-button @click="text1+=1">加加加</c-button>
     父组件：{{ text1 }}
     <div style="margin: 20px"></div>
     <c-button name="i-set">666</c-button>
     <c-button name="i-set" icon-position="right">666</c-button>
     <c-button name="i-loading" :loading="true">666</c-button>
-    <icon icon-name="i-good"></icon>
+    <c-icon icon-name="i-good"></c-icon>
     <c-button-group>
         <c-button icon="i-arrow-left">上一页</c-button>
         <c-button>更多</c-button>
@@ -44,6 +49,15 @@
         <div></div>
         <div></div>
     </c-button-group>
+    <c-select default-value="" style="width: 200px">
+        <template v-slot:name>
+            145999
+        </template>
+        <c-select-option value="">全部</c-select-option>
+        <c-select-option value="v111">111</c-select-option>
+        <c-select-option value="v222" disabled>222</c-select-option>
+        <c-select-option value="v333">333</c-select-option>
+    </c-select>
 </div>
 
 <script src="./node_modules/vue/dist/vue.min.js"></script>

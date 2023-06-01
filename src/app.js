@@ -1,13 +1,17 @@
 import Vue from "vue";
-import Button from "./compnents/Button.vue";
-import Icon from "./compnents/Icon";
-import ButtonGroup from "./compnents/Button-group.vue";
-import Input from "./compnents/Input.vue";
+import CButton from "./compnents/c-button.vue";
+import CIcon from "./compnents/c-icon";
+import CButtonGroup from "./compnents/c-button-group.vue";
+import CInput from "./compnents/c-input.vue";
+import CSelect from "./compnents/c-select.vue";
+import CSelectOption from "./compnents/c-select-option.vue";
 
-Vue.component('c-input', Input)
-Vue.component('c-button-group', ButtonGroup)
-Vue.component('c-button', Button)
-Vue.component('Icon', Icon)
+Vue.component('c-select-option', CSelectOption)
+Vue.component('c-select', CSelect)
+Vue.component('c-input', CInput)
+Vue.component('c-button-group', CButtonGroup)
+Vue.component('c-button', CButton)
+Vue.component('c-icon', CIcon)
 
 new Vue({
     el: '#app',
