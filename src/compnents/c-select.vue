@@ -1,53 +1,72 @@
 <template>
-    <div :class="`c-select ${selectListShow?'c-select-open':''}`">
-        <div class="c-selected" @click="click">
-            <span>{{ selectLabel }}</span>
-            <c-icon icon-name="i-arrow-down"/>
-        </div>
-        <transition name="select-list">
-            <div class="select-list" v-show="selectListShow">
-                <slot></slot>
-            </div>
-        </transition>
-
-
+  <div :class="`c-select ${selectListShow?'c-select-open':''}`">
+    <div class="c-selected" @click="click">
+      <span>{{ selectLabel }}</span>
+      <c-icon icon-name="i-arrow-down"/>
     </div>
+    <transition name="select-list">
+      <div class="select-list" v-show="selectListShow">
+        <slot></slot>
+      </div>
+    </transition>
+
+
+  </div>
 </template>
 
 <script>
 export default {
-    name: "c-select",
-    props: {
-        defaultValue: {
-            type: [String, Number],
-            default: ''
-        }
+  name: "c-select",
+  props: {
+    defaultValue: {
+      type: [String, Number],
+      default: ''
     },
-    data() {
-        return {
-            selectListShow: false,
-            selectLabel: ''
-        }
+    value: {
+      type: [String, Number],
+      default: false
+    }
+  },
+  data() {
+    return {
+      selectListShow: false,
+      selectLabel: ''
+    }
+  },
+  methods: {
+    click() {
+      this.selectListShow = !this.selectListShow
     },
-    methods: {
-        click() {
-            this.selectListShow = !this.selectListShow
-        },
-        clickItem(value, label) {
-            console.log('点击选择了select的一项', value, label)
-            this.selectLabel = label
-            this.click()
-        }
+    clickItem(value, label) {
+      console.log('点击选择了select的一项', value, label)
+      this.selectLabel = label
+      this.click()
     },
-    mounted() {
-      //默认值去匹配子选项，显示文本
+
+    /**默认值去匹配子选项，显示文本，value是子项的value值**/
+    matchItem(value) {
       const matched = this.$slots.default.find(item => item.tag === "vue-component-1-c-select-option" && item.elm.__vue__.value === this.defaultValue)
       matched ? this.selectLabel = matched.elm.innerText : ''
 
-
-      //检查select组件种只能放c-button-group组件
-      console.log(this.$el,this.$slots,777)
     }
+  },
+
+  mounted() {
+    //检查select组件种只能放c-button-group组件，抛出警告
+    this.$slots.default.forEach(dom => {
+      dom.tag == "vue-component-1-c-select-option" || dom.tag == undefined ? '' : console.warn(`c-select组件中只能是c-select-option，您应该删除：${dom.tag}标签`)
+    })
+
+    console.log('c-select的v-model的值：', this.value)
+    //默认选项
+    this.value != false ? this.matchItem(this.defaultValue) : ''
+  },
+
+  watch: {
+    value() {
+
+    }
+  }
 }
 
 

@@ -49,10 +49,8 @@
         <div></div>
         <div></div>
     </c-button-group>
-    <c-select default-value="" style="width: 200px">
-        <template v-slot:name>
-            145999
-        </template>
+    选择的value：{{ select }}
+    <c-select default-value="" v-model="select" @change="change" style="width: 200px">
         <c-select-option value="">全部</c-select-option>
         <c-select-option value="v111">111</c-select-option>
         <c-select-option value="v222" disabled>222</c-select-option>
@@ -64,6 +62,11 @@
         <p></p>
 
     </c-select>
+
+    <a-select @change="changeA" default-value="v1">
+        <a-select-option value="v1">1</a-select-option>
+        <a-select-option value="v2">2</a-select-option>
+    </a-select>
 </div>
 
 <script src="./node_modules/vue/dist/vue.min.js"></script>
