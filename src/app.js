@@ -26,8 +26,9 @@ new Vue({
     data() {
         return {
             text1: 666,
-            select: '',
-            selectA: ''
+            select: 'v111',
+            selectA: '',
+            input:'v222'
         }
     },
     methods: {
@@ -36,6 +37,12 @@ new Vue({
         },
         changeA(data) {
             console.log('ant-design选择后：', this.selectA)
+        }
+    },
+    watch:{
+        input(value){
+            console.log('新输入的：',value)
+            this.select=value
         }
     }
 })

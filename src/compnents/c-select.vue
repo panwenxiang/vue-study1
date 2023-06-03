@@ -23,14 +23,15 @@ export default {
       default: ''
     },
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: false
     }
   },
   data() {
     return {
       selectListShow: false,
-      selectLabel: ''
+      selectLabel: '',
+      selectValue: ''
     }
   },
   methods: {
@@ -45,9 +46,12 @@ export default {
 
     /**默认值去匹配子选项，显示文本，value是子项的value值**/
     matchItem(value) {
-      const matched = this.$slots.default.find(item => item.tag === "vue-component-1-c-select-option" && item.elm.__vue__.value === this.defaultValue)
-      matched ? this.selectLabel = matched.elm.innerText : ''
-
+      const matched = this.$slots.default.find(item => item.tag != undefined && item.elm.__vue__.value === value)
+      if(matched) {
+        this.selectLabel = matched.elm.innerText
+        this.selectValue = matched.elm.__vue__.value
+      }
+      console.log(matched)
     }
   },
 
@@ -56,15 +60,17 @@ export default {
     this.$slots.default.forEach(dom => {
       dom.tag == "vue-component-1-c-select-option" || dom.tag == undefined ? '' : console.warn(`c-select组件中只能是c-select-option，您应该删除：${dom.tag}标签`)
     })
-
-    console.log('c-select的v-model的值：', this.value)
     //默认选项
-    this.value != false ? this.matchItem(this.defaultValue) : ''
+    this.matchItem(this.value === false ? this.defaultValue : this.value)
   },
 
   watch: {
-    value() {
-
+    selectValue() {
+      console.log(666)
+      this.$emit('input',this.selectValue)
+    },
+    value(){
+      this.matchItem(this.value)
     }
   }
 }
@@ -125,6 +131,7 @@ export default {
     box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
     width: 100%;
     padding: 4px 0;
+    z-index: 1;
   }
 }
 

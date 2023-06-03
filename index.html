@@ -55,14 +55,11 @@
         <c-select-option value="v111">111</c-select-option>
         <c-select-option value="v222" disabled>222</c-select-option>
         <c-select-option value="v333">333</c-select-option>
-
-        <div class="div22">
-            <span></span>
-        </div>
-        <p></p>
-
     </c-select>
-
+    {{input}},,{{select}}
+    <c-input v-model="input"></c-input>
+    <br><br>
+    antDesign的select：
     <a-select @change="changeA" default-value="v1">
         <a-select-option value="v1">1</a-select-option>
         <a-select-option value="v2">2</a-select-option>
