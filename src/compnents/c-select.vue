@@ -46,12 +46,21 @@ export default {
 
     /**默认值去匹配子选项，显示文本，value是子项的value值**/
     matchItem(value) {
-      const matched = this.$slots.default.find(item => item.tag != undefined && item.elm.__vue__.value === value)
+      console.log(11,this.$slots.default[0])
+      console.log(11,this.$slots.default[0])
+      const matched = this.$slots.default.find(item => {
+        console.log('item :',item,'item.elm :',item.elm,item.data);
+        item.tag != undefined && item.elm.__vue__.value === value
+      })
+      console.log(22)
+      console.log(33,matched)
       if(matched) {
+        console.log(44,matched)
         this.selectLabel = matched.elm.innerText
         this.selectValue = matched.elm.__vue__.value
+      }else{
+        this.selectLabel = value
       }
-      console.log(matched)
     }
   },
 
