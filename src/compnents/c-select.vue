@@ -19,19 +19,19 @@ export default {
   name: "c-select",
   props: {
     defaultValue: {
-      type: [String, Number],
+      type: String,
       default: ''
     },
     value: {
-      type: [String, Number, Boolean],
-      default: false
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       selectListShow: false,
       selectLabel: '',
-      selectValue: ''
+      // selectValue: ''
     }
   },
   methods: {
@@ -39,25 +39,17 @@ export default {
       this.selectListShow = !this.selectListShow
     },
     clickItem(value, label) {
-      console.log('点击选择了select的一项', value, label)
       this.selectLabel = label
+      this.$emit('input',value)
       this.click()
     },
 
     /**默认值去匹配子选项，显示文本，value是子项的value值**/
     matchItem(value) {
-      console.log(11,this.$slots.default[0])
-      console.log(11,this.$slots.default[0])
-      const matched = this.$slots.default.find(item => {
-        console.log('item :',item,'item.elm :',item.elm,item.data);
-        item.tag != undefined && item.elm.__vue__.value === value
-      })
-      console.log(22)
-      console.log(33,matched)
+      const matched = this.$slots.default.find(item => item.componentOptions&&item.componentOptions.tag === "c-select-option"&& item.componentOptions.propsData.value === value)
       if(matched) {
-        console.log(44,matched)
-        this.selectLabel = matched.elm.innerText
-        this.selectValue = matched.elm.__vue__.value
+        this.selectLabel = matched.componentOptions.children[0].text
+        // this.selectValue = matched.componentOptions.propsData.value
       }else{
         this.selectLabel = value
       }
@@ -66,18 +58,19 @@ export default {
 
   mounted() {
     //检查select组件种只能放c-button-group组件，抛出警告
-    this.$slots.default.forEach(dom => {
-      dom.tag == "vue-component-1-c-select-option" || dom.tag == undefined ? '' : console.warn(`c-select组件中只能是c-select-option，您应该删除：${dom.tag}标签`)
+    this.$slots.default.forEach(item => {
+      if( item.tag!=undefined && !item.tag.includes("c-select-option") )
+        console.warn(`c-select组件中只能是c-select-option，您应该删除：${ item.componentOptions ? item.componentOptions.tag : item.tag}标签`)
     })
+
     //默认选项
-    this.matchItem(this.value === false ? this.defaultValue : this.value)
+    this.matchItem(this.value === "" ? this.defaultValue : this.value)
   },
 
   watch: {
-    selectValue() {
-      console.log(666)
-      this.$emit('input',this.selectValue)
-    },
+    // selectValue() {
+    //   this.$emit('input',this.selectValue)
+    // },
     value(){
       this.matchItem(this.value)
     }

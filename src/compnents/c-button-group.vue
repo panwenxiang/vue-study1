@@ -8,7 +8,6 @@
 export default {
     name: "c-button-group",
     mounted() {
-      console.log(this.$el,888)
         for (let dom of this.$el.children) {
             if (dom.nodeName.toLowerCase() != 'button') {
                 console.warn(`警告：button-group组件中的子元素应该是c-button，但是你写的是 ${dom.nodeName.toLowerCase()}！`)

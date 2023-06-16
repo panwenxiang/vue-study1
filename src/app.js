@@ -13,6 +13,8 @@ import CButtonGroup from "./compnents/c-button-group.vue";
 import CInput from "./compnents/c-input.vue";
 import CSelect from "./compnents/c-select.vue";
 import CSelectOption from "./compnents/c-select-option.vue";
+import CRow from "./compnents/c-row.vue";
+import CCol from "./compnents/c-col.vue";
 
 Vue.component('c-select-option', CSelectOption)
 Vue.component('c-select', CSelect)
@@ -20,6 +22,9 @@ Vue.component('c-input', CInput)
 Vue.component('c-button-group', CButtonGroup)
 Vue.component('c-button', CButton)
 Vue.component('c-icon', CIcon)
+Vue.component('c-row',CRow)
+Vue.component('c-col',CCol)
+
 
 new Vue({
     el: '#app',
@@ -35,13 +40,9 @@ new Vue({
         change(data) {
             console.log("选择改变了：", data)
         },
-        changeA(data) {
-            console.log('ant-design选择后：', this.selectA)
-        }
     },
     watch:{
         input(value){
-            console.log('新输入的：',value)
             this.select=value
         }
     }

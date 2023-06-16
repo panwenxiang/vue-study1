@@ -26,11 +26,30 @@
         #app{
             margin: 20px;
         }
+        div[dada]{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
     </style>
 </head>
 <body>
 
 <div id="app">
+
+    <c-row>
+        <c-col span="12">111</c-col>
+        <c-col span="10" offset="1">222</c-col>
+        <c-col span="2">111</c-col>
+    </c-row>
+    <c-row gutter="50">
+        <c-col :span="6">333</c-col>
+        <c-col :span="12">444</c-col>
+        <c-col :span="6">333</c-col>
+    </c-row>
+
+    <hr>
+    <div dada></div>
     <c-input value="1awfa啊我发"></c-input>
     <c-input readonly value="22awfa啊我发"></c-input>
     <c-input disabled value="3333awd"></c-input>
@@ -55,15 +74,15 @@
         <c-select-option value="v111">111</c-select-option>
         <c-select-option value="v222" disabled>222</c-select-option>
         <c-select-option value="v333">333</c-select-option>
+        <div>
+            6666
+            <div>55</div>
+        </div>
+        <c-input>66</c-input>
     </c-select>
     {{input}},,{{select}}
     <c-input v-model="select"></c-input>
     <br><br>
-    antDesign的select：
-    <a-select @change="changeA" default-value="v1" v-model="select">
-        <a-select-option value="v1">1</a-select-option>
-        <a-select-option value="v2">2</a-select-option>
-    </a-select>
 </div>
 
 <script src="./node_modules/vue/dist/vue.min.js"></script>
