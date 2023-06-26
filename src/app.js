@@ -15,6 +15,11 @@ import CSelect from "./compnents/c-select.vue";
 import CSelectOption from "./compnents/c-select-option.vue";
 import CRow from "./compnents/c-row.vue";
 import CCol from "./compnents/c-col.vue";
+import CTabs from "./compnents/c-tabs/c-tabs.vue";
+import CTabsHead from "./compnents/c-tabs/c-tabs-head.vue";
+import CTabsBody from "./compnents/c-tabs/c-tabs-body.vue";
+import CTabsItem from "./compnents/c-tabs/c-tabs-item.vue";
+import CTabsPane from "./compnents/c-tabs/c-tabs-pane.vue";
 
 Vue.component('c-select-option', CSelectOption)
 Vue.component('c-select', CSelect)
@@ -24,6 +29,11 @@ Vue.component('c-button', CButton)
 Vue.component('c-icon', CIcon)
 Vue.component('c-row',CRow)
 Vue.component('c-col',CCol)
+Vue.component('c-tabs',CTabs)
+Vue.component('c-tabs-head',CTabsHead)
+Vue.component('c-tabs-body',CTabsBody)
+Vue.component('c-tabs-item',CTabsItem)
+Vue.component('c-tabs-pane',CTabsPane)
 
 
 new Vue({
@@ -33,7 +43,8 @@ new Vue({
             text1: 666,
             select: 'v111',
             selectA: '',
-            input:'v222'
+            input:'v222',
+            selectTab:'sports'
         }
     },
     methods: {

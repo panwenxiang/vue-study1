@@ -37,6 +37,20 @@
 
 <div id="app">
 
+    <c-tabs :selected.sync="selectTab">
+        <c-tabs-head>
+            <c-tabs-item name="woman">美女</c-tabs-item>
+            <c-tabs-item name="finance">财经</c-tabs-item>
+            <c-tabs-item name="sports">体育</c-tabs-item>
+        </c-tabs-head>
+        <c-tabs-body>
+            <c-tabs-pane name="woman">美女相关资讯</c-tabs-pane>
+            <c-tabs-pane name="finance">财经</c-tabs-pane>
+            <c-tabs-pane name="sports">体育</c-tabs-pane>
+        </c-tabs-body>
+    </c-tabs>
+
+    <hr>
     <c-row>
         <c-col span="12">111</c-col>
         <c-col span="10" offset="1">222</c-col>
