@@ -11,6 +11,7 @@ export default {
   name: "c-tabs",
   data(){
     return {
+      data111:11,
       eventBus:new Vue()
     }
   },
@@ -18,6 +19,11 @@ export default {
     return {
       eventBus:this.eventBus
     }
+  },
+  mounted() {
+  },
+  methods: {
+
   }
 }
 </script>
