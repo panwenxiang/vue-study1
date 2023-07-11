@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件切割上传</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.js"></script>
+</head>
+<body>
+<input type="file" id="selectFile">
+<p id="chunkMassage"></p>
+<button id="update">上传</button>
+
+<script>
+    let chunkList
+    let fileDom = document.getElementById('selectFile')
+    fileDom.addEventListener("change", (e) => {
+        chunkList = createChunk(e.target.files[0])
+        console.log('文件：', e.target.files[0], chunkList)
+        document.getElementById('chunkMassage').innerText = '切片数量：' + chunkList.length
+    })
+
+    document.getElementById('update').addEventListener('click', () => {
+        uploadFile(chunkList)
+    })
+
+    function uploadFile(chunkList) {
+        const requestList = chunkList.map((item, index) => {
+            const formData = new FormData() //创建表单类型数据
+            formData.append('file', item)
+            formData.append('fileName', item.fileName)
+            formData.append('index', index)
+            return formData
+        }).map((formData, index) => {
+            axiosRequest('/upload', formData).then(res => {
+                console.log(`上传片段：${index}成功`)
+            })
+        })
+
+        //保证所有的切片都已经传输完毕
+        Promise.all(requestList).then(()=>{
+            console.log(123)
+        }).catch(()=>{
+            console.log(444)
+        })
+
+        console.log(requestList)
+
+    }
+
+
+    function axiosRequest(url, data) {
+        return new Promise((resolve, reject) => {
+            const config = {//设置请求头
+                headers: 'Content-Type:application/x-www-form-urlencoded',
+            }
+            axios.post(url, data, config).then(res => {
+                resolve(res)
+            }).catch(err=>{
+                console.log(6666666666,err)
+            })
+        })
+    }
+
+    function createChunk(file, size = 1024 * 1024 * 2) {
+        let cur = 0
+        let chunkList = []
+        while (cur < file.size) {
+            chunkList.push({
+                "file": file.slice(cur, size + cur),
+                "fileName": file.name
+            })
+            cur += size
+        }
+        return chunkList
+    }
+
+</script>
+
+</body>
+</html>
